@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Java/Maven
+target/
+*.class
+
+# Env files
+.env
+.env.local
