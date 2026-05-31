@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import api from '../api';
 import AuthContext from '../context/AuthContext';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { Shield, AlertTriangle, TrendingUp, TrendingDown, Zap, RefreshCw } from 'lucide-react';
@@ -25,7 +25,7 @@ function Portfolio() {
     setError(null);
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      const res = await axios.get('/api/portfolio', config);
+      const res = await api.get('/api/portfolio', config);
       setPortfolioData(res.data);
     } catch (err) {
       console.error("Failed to load portfolio", err);

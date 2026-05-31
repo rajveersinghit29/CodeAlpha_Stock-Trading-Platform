@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import axios from 'axios';
+import api from '../api';
 import AuthContext from '../context/AuthContext';
 import { TrendingUp, TrendingDown, Search, ArrowRight, Brain, Shield, Globe, Zap, Activity, AlertTriangle, BarChart3 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -56,7 +56,7 @@ function Dashboard() {
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS('/ws'),
+      webSocketFactory: () => new SockJS((import.meta.env.VITE_BACKEND_URL || '') + '/ws'),
       onConnect: () => {
         client.subscribe('/topic/stocks', (message) => {
           const stock = JSON.parse(message.body);
@@ -79,7 +79,7 @@ function Dashboard() {
     setTrading(true);
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.post(`/api/trade/${type.toLowerCase()}`, { symbol: selectedStockSymbol, quantity: orderQuantity }, config);
+      await api.post(`/api/trade/${type.toLowerCase()}`, { symbol: selectedStockSymbol, quantity: orderQuantity }, config);
       alert(`${type} order for ${orderQuantity} ${selectedStockSymbol} executed successfully!`);
       setOrderQuantity(1);
     } catch (err) {

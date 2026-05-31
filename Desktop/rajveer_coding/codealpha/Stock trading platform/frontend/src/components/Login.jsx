@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import axios from 'axios';
+import api from '../api';
 import AuthContext from '../context/AuthContext';
 import { LineChart, Lock, User } from 'lucide-react';
 
@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('/api/auth/login', { username, password });
+      const res = await api.post('/api/auth/login', { username, password });
       login(res.data);
     } catch (err) {
       alert('Login failed: ' + (err.response?.data || err.message));

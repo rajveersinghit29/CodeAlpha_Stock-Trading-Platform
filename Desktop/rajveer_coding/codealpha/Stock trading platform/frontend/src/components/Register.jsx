@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import { LineChart, Lock, User, DollarSign } from 'lucide-react';
 
@@ -13,7 +13,7 @@ function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/auth/register', { username, password });
+      await api.post('/api/auth/register', { username, password });
       alert('Account created! You have been credited $100,000 in virtual trading capital.');
       navigate('/login');
     } catch (err) {
