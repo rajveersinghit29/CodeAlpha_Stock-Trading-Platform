@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import api from '../api';
+import { DEMO_MODE } from '../api';
 import { useNavigate } from 'react-router-dom';
-import { LineChart, Lock, User, DollarSign } from 'lucide-react';
+import { LineChart, Lock, User, DollarSign, FlaskConical } from 'lucide-react';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -17,6 +18,12 @@ function Register() {
       alert('Account created! You have been credited $100,000 in virtual trading capital.');
       navigate('/login');
     } catch (err) {
+      // In demo mode the interceptor resolves via the error path with __mock
+      if (err?.response?.__mock) {
+        alert('Account created! You have been credited $100,000 in virtual trading capital.');
+        navigate('/login');
+        return;
+      }
       alert('Registration failed: ' + (err.response?.data || err.message));
     } finally {
       setLoading(false);
@@ -44,6 +51,13 @@ function Register() {
             <p className="text-xs text-emerald-400 tracking-[0.3em] font-medium">CREATE YOUR ACCOUNT</p>
           </div>
         </div>
+
+        {DEMO_MODE && (
+          <div className="mb-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 flex items-start space-x-2">
+            <FlaskConical className="text-yellow-400 mt-0.5 flex-shrink-0" size={16} />
+            <p className="text-yellow-300 text-xs"><span className="font-bold">Demo Mode</span> — No backend connected. Any username/password works for testing.</p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="bg-[#161b22]/80 backdrop-blur-xl p-8 rounded-2xl border border-gray-800 shadow-2xl shadow-black/50">
           <h2 className="text-xl font-bold mb-1 text-gray-100">Join the Platform</h2>

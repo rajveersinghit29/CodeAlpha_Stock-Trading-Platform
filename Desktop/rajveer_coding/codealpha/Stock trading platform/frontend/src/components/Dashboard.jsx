@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useMemo, useCallback } from 'react';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import api from '../api';
+import api, { DEMO_MODE, DEMO_STOCKS } from '../api';
 import AuthContext from '../context/AuthContext';
 import { TrendingUp, TrendingDown, Search, ArrowRight, Brain, Shield, Globe, Zap, Activity, AlertTriangle, BarChart3 } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
@@ -55,6 +55,28 @@ function Dashboard() {
   const [activePanel, setActivePanel] = useState('chart'); // chart | sentiment | depth | geo
 
   useEffect(() => {
+    if (DEMO_MODE) {
+      // Demo mode: simulate live price feed with random fluctuations
+      const tick = () => {
+        Object.values(DEMO_STOCKS).forEach((stock) => {
+          const change = (Math.random() - 0.498) * stock.currentPrice * 0.003;
+          const newPrice = Math.max(1, stock.currentPrice + change);
+          DEMO_STOCKS[stock.symbol] = { ...stock, currentPrice: newPrice };
+          setStocks((prev) => ({ ...prev, [stock.symbol]: { ...stock, currentPrice: newPrice } }));
+          setPriceHistory((prev) => {
+            const hist = prev[stock.symbol] || [];
+            const newHist = [...hist, { time: new Date().toLocaleTimeString(), price: newPrice }];
+            if (newHist.length > 30) newHist.shift();
+            return { ...prev, [stock.symbol]: newHist };
+          });
+        });
+      };
+      tick(); // populate immediately
+      const interval = setInterval(tick, 1500);
+      return () => clearInterval(interval);
+    }
+
+    // Real WebSocket mode
     const client = new Client({
       webSocketFactory: () => new SockJS((import.meta.env.VITE_BACKEND_URL || '') + '/ws'),
       onConnect: () => {
