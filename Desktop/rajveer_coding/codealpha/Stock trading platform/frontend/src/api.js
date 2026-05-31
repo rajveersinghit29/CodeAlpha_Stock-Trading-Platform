@@ -46,7 +46,7 @@ if (DEMO_MODE) {
 
     // POST /api/auth/register
     if (method === 'post' && path.includes('/api/auth/register')) {
-      const body = JSON.parse(config.data || '{}');
+      const body = typeof config.data === 'string' ? JSON.parse(config.data || '{}') : (config.data || {});
       if (demoStore.users[body.username]) {
         return Promise.reject({ response: { status: 409, data: 'Username already exists' } });
       }
@@ -64,7 +64,7 @@ if (DEMO_MODE) {
 
     // POST /api/auth/login
     if (method === 'post' && path.includes('/api/auth/login')) {
-      const body = JSON.parse(config.data || '{}');
+      const body = typeof config.data === 'string' ? JSON.parse(config.data || '{}') : (config.data || {});
       if (demoStore.users[body.username] === body.password) {
         return Promise.reject({
           response: {
