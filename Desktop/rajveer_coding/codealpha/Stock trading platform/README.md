@@ -22,6 +22,13 @@ This platform bridges the gap between deep-data heavyweights (like Bloomberg) an
 - **Portfolio Guardian:** An automated hedge generator that monitors your portfolio against simulated macroeconomic "black swan" events.
 - **Real-Time Websocket Data:** Live stock price streaming directly from the Spring Boot backend to the React frontend.
 
+## 🏢 Enterprise Engineering
+To demonstrate production readiness, this platform implements industry-standard DevOps and engineering practices:
+- **Full Dockerization:** Separate `Dockerfile`s for the React and Spring Boot apps, orchestrated beautifully via `docker-compose.yml` and a custom Nginx reverse proxy.
+- **CI/CD Pipeline:** A GitHub Actions workflow (`.github/workflows/ci.yml`) automatically builds and tests both the frontend and backend on every push.
+- **Automated Testing:** Foundational integration testing using Spring Boot Test to ensure context stability.
+- **Swagger API Documentation:** Fully automated, interactive REST API documentation generated via `springdoc-openapi`.
+
 ## 🛠 Technology Stack
 
 ### Frontend
