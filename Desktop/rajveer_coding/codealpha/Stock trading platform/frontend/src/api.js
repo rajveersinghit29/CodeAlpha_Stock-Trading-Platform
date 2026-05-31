@@ -19,6 +19,27 @@ const DEMO_STOCKS = {
   AMZN: { symbol: 'AMZN', name: 'Amazon.com Inc.', currentPrice: 183.75 },
   META: { symbol: 'META', name: 'Meta Platforms', currentPrice: 509.11 },
   JPM: { symbol: 'JPM', name: 'JPMorgan Chase', currentPrice: 198.44 },
+  V: { symbol: 'V', name: 'Visa Inc.', currentPrice: 278.14 },
+  WMT: { symbol: 'WMT', name: 'Walmart Inc.', currentPrice: 59.85 },
+  JNJ: { symbol: 'JNJ', name: 'Johnson & Johnson', currentPrice: 153.25 },
+  XOM: { symbol: 'XOM', name: 'Exxon Mobil Corp.', currentPrice: 114.90 },
+  PG: { symbol: 'PG', name: 'Procter & Gamble', currentPrice: 165.70 },
+  MA: { symbol: 'MA', name: 'Mastercard Inc.', currentPrice: 468.91 },
+  HD: { symbol: 'HD', name: 'Home Depot Inc.', currentPrice: 345.18 },
+  CVX: { symbol: 'CVX', name: 'Chevron Corp.', currentPrice: 162.30 },
+  MRK: { symbol: 'MRK', name: 'Merck & Co.', currentPrice: 128.44 },
+  KO: { symbol: 'KO', name: 'Coca-Cola Co.', currentPrice: 62.15 },
+  PEP: { symbol: 'PEP', name: 'PepsiCo Inc.', currentPrice: 174.50 },
+  BAC: { symbol: 'BAC', name: 'Bank of America', currentPrice: 39.52 },
+  ABBV: { symbol: 'ABBV', name: 'AbbVie Inc.', currentPrice: 166.75 },
+  COST: { symbol: 'COST', name: 'Costco Wholesale', currentPrice: 785.40 },
+  MCD: { symbol: 'MCD', name: 'McDonald\'s Corp.', currentPrice: 275.12 },
+  CRM: { symbol: 'CRM', name: 'Salesforce Inc.', currentPrice: 284.10 },
+  NFLX: { symbol: 'NFLX', name: 'Netflix Inc.', currentPrice: 645.20 },
+  AMD: { symbol: 'AMD', name: 'Advanced Micro Devices', currentPrice: 164.30 },
+  INTC: { symbol: 'INTC', name: 'Intel Corp.', currentPrice: 31.45 },
+  QCOM: { symbol: 'QCOM', name: 'Qualcomm Inc.', currentPrice: 205.15 },
+  DIS: { symbol: 'DIS', name: 'Walt Disney Co.', currentPrice: 104.50 }
 };
 
 // Simulated demo user store
