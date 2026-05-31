@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
 import api from '../api';
-import { DEMO_MODE } from '../api';
 import AuthContext from '../context/AuthContext';
-import { LineChart, Lock, User, FlaskConical } from 'lucide-react';
+import { LineChart, Lock, User } from 'lucide-react';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -53,15 +52,6 @@ function Login() {
           </div>
         </div>
 
-        {DEMO_MODE && (
-          <div className="mb-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 flex items-start space-x-2">
-            <FlaskConical className="text-yellow-400 mt-0.5 flex-shrink-0" size={16} />
-            <div className="text-xs text-yellow-300">
-              <p className="font-bold mb-0.5">Demo Mode — No backend required</p>
-              <p className="opacity-80">Username: <span className="font-mono bg-black/30 px-1 rounded">demo</span> &nbsp; Password: <span className="font-mono bg-black/30 px-1 rounded">demo123</span></p>
-            </div>
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} className="bg-[#161b22]/80 backdrop-blur-xl p-8 rounded-2xl border border-gray-800 shadow-2xl shadow-black/50">
           <h2 className="text-xl font-bold mb-1 text-gray-100">Welcome Back</h2>
